@@ -1,0 +1,103 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyO3aISKyeUgir/N5MwYUdzj",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Su-3214/26SD424_MASUZAKI_TATSUYA/blob/main/SD4AI%E6%BC%94%E7%BF%9207%E6%A1%9D%E5%B4%8E%E9%81%94%E4%B9%9F\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from langchain_core.output_parsers import PydanticOutputParser\n",
+        "# Recipeクラス用のPydanticOutputParserのインスタンスを生成する\n",
+        "out_parser = PydanticOutputParser( pydantic_object=Recipe )\n",
+        "# out_parserのインスタンスから、プロンプトに埋め込むためのフォーマットを取得\n",
+        "format_instructions = out_parser.get_format_instructions()\n",
+        "# 画面に表示\n",
+        "print( format_instructions )\n",
+        "\n",
+        "The output should be formatted as a JSON instance that conforms to the JSON schema below.\n",
+        "\n",
+        "As an example, for the schema {\"properties\": {\"foo\": {\"title\": \"Foo\", \"description\": \"a list of strings\", \"type\": \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"foo\"]}\n",
+        "the object {\"foo\": [\"bar\", \"baz\"]} is a well-formatted instance of the schema. The object {\"properties\": {\"foo\": [\"bar\", \"baz\"]}} is not well-formatted.\n",
+        "\n",
+        "Here is the output schema:\n",
+        "```\n",
+        "{\"properties\": {\"ingredients\": {\"description\": \"料理の材料リスト\", \"items\": {\"type\": \"string\"}, \"title\": \"Ingredients\", \"type\": \"array\"}, \"steps\": {\"description\": \"調理手順のリスト\", \"items\": {\"type\": \"string\"}, \"title\": \"Steps\", \"type\": \"array\"}}, \"required\": [\"ingredients\", \"steps\"]}"
+      ],
+      "metadata": {
+        "id": "pQ-T7Cv8ucnG"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"材料リスト：\")\n",
+        "for ingeredient in recipe_object.ingredients:\n",
+        "  # 材料リスト\n",
+        "  print(ingeredient)\n",
+        "# forブロック終わり\n",
+        "print(\"調理手順：\")\n",
+        "for step in recipe_object.steps:\n",
+        "  # 材料リスト\n",
+        "  print(step)\n",
+        "# forブロック終わり\n",
+        "\n",
+        "\n",
+        "材料リスト：\n",
+        "牛肉（すね肉または肩ロース肉）: 400g\n",
+        "玉ねぎ: 2個\n",
+        "人参: 1本\n",
+        "セロリ: 1/2本\n",
+        "ニンニク: 1片\n",
+        "生姜: 1片\n",
+        "バター: 20g\n",
+        "赤ワイン: 100ml\n",
+        "水: 600ml\n",
+        "市販のカレールー: 1パック（約100g）\n",
+        "インスタントコーヒー: 小さじ1/2\n",
+        "チャツネ（またはリンゴジャム）: 大さじ1\n",
+        "塩・コショウ: 適量\n",
+        "生クリーム: 適宜\n",
+        "調理手順：\n",
+        "玉ねぎ、セロリ、ニンニク、生姜をすべてみじん切りにし、人参はすりおろしておきます。\n",
+        "牛肉は一口大に切り、塩・コショウを振って、フライパンで表面に焼き色がつくまで強火で焼き、一度取り出します。\n",
+        "厚手の鍋にバターを熱し、みじん切りにした玉ねぎを飴色になるまで弱火でじっくりと炒めます。\n",
+        "ニンニク、生姜、セロリ、すりおろした人参を鍋に加え、さらに香りが立つまで炒め合わせます。\n",
+        "牛肉を鍋に戻し入れ、赤ワインを加えてひと煮立ちさせ、アルコール分を飛ばします。\n",
+        "水を加え、沸騰したら丁寧にアクを取り除き、弱火で肉が柔らかくなるまで約1時間煮込みます。\n",
+        "一度火を止め、カレールーを割り入れてよく溶かします。\n",
+        "再び弱火にかけ、インスタントコーヒー、チャツネを加え、とろみがつくまでさらに約15分煮込みます。\n",
+        "器に盛り付け、お好みで仕上げに生クリームを回しかけて完成です。"
+      ],
+      "metadata": {
+        "id": "etMg65P0sz6L"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
