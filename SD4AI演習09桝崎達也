@@ -1,0 +1,104 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyObVSzcsauLz/XM5ocBuulZ",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Su-3214/26SD424_MASUZAKI_TATSUYA/blob/main/SD4AI%E6%BC%94%E7%BF%9209%E6%A1%9D%E5%B4%8E%E9%81%94%E4%B9%9F\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from langchain_community.document_loaders import GitLoader\n",
+        "\n",
+        "# GitLoaderを使って指定したパターンのファイルかどうかを判定する関数を定義する\n",
+        "def file_filter( file_path:str ) -> bool:\n",
+        "   return file_path.endswith( \".mdx\" ) # 指定したファイルが.mdx拡張子か\n",
+        "# 関数定義終わり\n",
+        "\n",
+        "# フィルターにマッチするファイルだけを取得するドキュメントローダーを生成\n",
+        "loader = GitLoader(\n",
+        "    clone_url=\"https://github.com/langchain-ai/docs\",\n",
+        "    repo_path = \"langchain\",\n",
+        "    branch = \"main\",\n",
+        "    file_filter=file_filter # 自作の関数「file_filter」を指定\n",
+        ")\n",
+        "# ドキュメントローダーを実行\n",
+        "raw_docs = loader.load( )\n",
+        ""
+      ],
+      "metadata": {
+        "id": "EejUgBzNvXc7"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "rom langchain_text_splitters import CharacterTextSplitter\n",
+        "# CharacterTextSplitterのインスタンス生成\n",
+        "text_splitter = CharacterTextSplitter( chunk_size=1000, chunk_overlap=200)\n",
+        "# 指定したパターンのチャンクのリストに変換する\n",
+        "docs = text_splitter.split_documents( raw_docs )\n",
+        "print( len(docs) )"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 110
+        },
+        "id": "SgnjsUgivbdA",
+        "outputId": "edaf541e-c32a-460e-eaa0-68598ab0b1ac"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "SyntaxError",
+          "evalue": "invalid syntax (4138429719.py, line 1)",
+          "traceback": [
+            "\u001b[0;36m  File \u001b[0;32m\"/tmp/ipykernel_552/4138429719.py\"\u001b[0;36m, line \u001b[0;32m1\u001b[0m\n\u001b[0;31m    rom langchain_text_splitters import CharacterTextSplitter\u001b[0m\n\u001b[0m        ^\u001b[0m\n\u001b[0;31mSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m invalid syntax\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "query = \"AWSのS3からデータを読み込むためのDocument Loaderはありますか？\"\n",
+        "# 文字列テキストをモデルを使ってベクトル化\n",
+        "vector_sample_data = embeddings_gemini.embed_query(query)\n",
+        "# 変換されたデータを表示\n",
+        "print( f\"データの次元数{len(vector_sample_data)}\")\n",
+        "print( vector_sample_data)\n",
+        "print( vector_sample_data[0])"
+      ],
+      "metadata": {
+        "id": "w4PwolFlvg94"
+      },
+      "execution_count": 2,
+      "outputs": []
+    }
+  ]
+}
