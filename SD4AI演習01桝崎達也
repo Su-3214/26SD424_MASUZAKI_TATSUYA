@@ -1,0 +1,60 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNJOrBCkYnB5VQOQTy3N2ac",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Su-3214/26SD424_MASUZAKI_TATSUYA/blob/main/SD4AI%E6%BC%94%E7%BF%9201%E6%A1%9D%E5%B4%8E%E9%81%94%E4%B9%9F\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "2oCypCtrr_Eo"
+      },
+      "outputs": [],
+      "source": [
+        "import google.generativeai as genai\n",
+        "# colabのユーザーデータ環境にアクセスするモジュールもimport\n",
+        "from google.colab import userdata\n",
+        "# colabに設定したAPIキーをgenaiに設定する\n",
+        "genai.configure( api_key = userdata.get(\"GOOGLE_API_KEY\") )"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "text = \"私はオムレツが大好き。昨日食べたオムレツは最高！！\"\n",
+        "# モデルのメソッドを使用してAPIを呼び出す\n",
+        "response = model.count_tokens(text)\n",
+        "# 結果を表示\n",
+        "print( f\"{text} \\n のトークン数は：{response.total_tokens}\" )"
+      ],
+      "metadata": {
+        "id": "OVvwJpD8sTOc"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
