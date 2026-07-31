@@ -1,0 +1,70 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMJv9zrcQUyu4cX4LlTLRC0",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Su-3214/26SD424_MASUZAKI_TATSUYA/blob/main/SD4AI%E6%BC%94%E7%BF%9202%E6%A1%9D%E5%B4%8E%E9%81%94%E4%B9%9F\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install -q -U google-generativeai"
+      ],
+      "metadata": {
+        "id": "etMg65P0sz6L"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import google.generativeai as genai\n",
+        "# ノートブックに設定したAPIキーをgenerativeaiに設定\n",
+        "from google.colab import userdata\n",
+        "genai.configure( api_key=userdata.get(\"GOOGLE_API_KEY\") )"
+      ],
+      "metadata": {
+        "id": "7v9XsG9Ps__t"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "# 生成AIのモデルのインスタンスを生成\n",
+        "model = genai.GenerativeModel(\"gemini-flash-latest\")\n",
+        "response = model.generate_content(\"こんにちは！　私はすーと言います！\")\n",
+        "print( response.text )"
+      ],
+      "metadata": {
+        "id": "L1aO0F6qtEyQ"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
