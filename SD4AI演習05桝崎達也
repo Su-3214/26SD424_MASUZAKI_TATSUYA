@@ -1,0 +1,88 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyN7GnJioTkXWgCVuCnQckqw",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Su-3214/26SD424_MASUZAKI_TATSUYA/blob/main/SD4AI%E6%BC%94%E7%BF%9205%E6%A1%9D%E5%B4%8E%E9%81%94%E4%B9%9F\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install -U -q google-generativeai\n",
+        "\n",
+        "\n",
+        "import google.generativeai as genai\n",
+        "from google.colab import userdata\n",
+        "\n",
+        "genai.configure( api_key=userdata.get(\"GOOGLE_API_KEY\") )\n",
+        "\n",
+        "model = genai.GenerativeModel(\"gemini-flash-latest\")\n",
+        "response = model.generate_content(\"プロンプトエンジニアリングとはなんでしょうか。\")\n",
+        "print( response.text )"
+      ],
+      "metadata": {
+        "id": "N1ppNW_MuuOU"
+      },
+      "execution_count": 1,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "/usr/local/lib/python3.12/dist-packages/google/colab/_import_hooks/_hook_injector.py:55: FutureWarning:\n",
+        "\n",
+        "All support for the `google.generativeai` package has ended. It will no longer be receiving\n",
+        "updates or bug fixes. Please switch to the `google.genai` package as soon as possible.\n",
+        "See README for more details:\n",
+        "\n",
+        "https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md"
+      ],
+      "metadata": {
+        "id": "Bq5jPzAxuzv7"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "# 入力データを分離してテンプレート化する\n",
+        "def generate_recipe_gemini( dish:str ) -> str:\n",
+        "  \"\"\" 入力データを引数で受け取りLLMに渡すプロンプトを作成して実行する関数 \"\"\"\n",
+        "  prompt = f\"以下の料理のレシピを考えてください\\n{dish}\"\n",
+        "  print( prompt ) # 組み立てたプロンプトを画面に表示\n",
+        "\n",
+        "  # モデルを生成してプロンプトを引き渡し、応答を受け取る\n",
+        "  model = genai.GenerativeModel(\"gemini-flash-latest\")\n",
+        "  response = model.generate_content( prompt )\n",
+        "  return response.text\n",
+        "# 関数定義終わり"
+      ],
+      "metadata": {
+        "id": "1ChKVlw4uwnu"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
