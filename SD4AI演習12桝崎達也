@@ -1,0 +1,125 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOXzJKuD5Hm4p9iCBdJDBv6",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Su-3214/26SD424_MASUZAKI_TATSUYA/blob/main/SD4AI%E6%BC%94%E7%BF%9212%E6%A1%9D%E5%B4%8E%E9%81%94%E4%B9%9F\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "from google.colab import userdata\n",
+        "\n",
+        "\n",
+        "# TavlilyのAPIキーはOS環境変数に登録する（TAVILY_API_KEY）\n",
+        "os.environ[\"TAVILY_API_KEY\"] = userdata.get(\"TAVILY_API_KEY\")\n",
+        "\n",
+        "\n",
+        "# GOOGLE_API_KEY は授業で明示的に使いたいので変数に登録\n",
+        "GOOGLE_API_KEY = userdata.get(\"GOOGLE_API_KEY\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 327
+        },
+        "id": "QbWdbgQJyHAr",
+        "outputId": "eb26856b-81a0-4a4e-93cb-e015d6431314"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "error",
+          "ename": "NotebookAccessError",
+          "evalue": "Notebook does not have access to secret TAVILY_API_KEY",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mNotebookAccessError\u001b[0m                       Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipykernel_552/1574146445.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      4\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      5\u001b[0m \u001b[0;31m# TavlilyのAPIキーはOS環境変数に登録する（TAVILY_API_KEY）\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 6\u001b[0;31m \u001b[0mos\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0menviron\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m\"TAVILY_API_KEY\"\u001b[0m\u001b[0;34m]\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0muserdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"TAVILY_API_KEY\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      7\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      8\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/google/colab/userdata.py\u001b[0m in \u001b[0;36mget\u001b[0;34m(key)\u001b[0m\n\u001b[1;32m     68\u001b[0m     \u001b[0;32mraise\u001b[0m \u001b[0mSecretNotFoundError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mkey\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     69\u001b[0m   \u001b[0;32mif\u001b[0m \u001b[0;32mnot\u001b[0m \u001b[0mresp\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'access'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;32mFalse\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 70\u001b[0;31m     \u001b[0;32mraise\u001b[0m \u001b[0mNotebookAccessError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mkey\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     71\u001b[0m   \u001b[0;32mreturn\u001b[0m \u001b[0mresp\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'payload'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m''\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mNotebookAccessError\u001b[0m: Notebook does not have access to secret TAVILY_API_KEY"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from langchain_core.prompts import ChatPromptTemplate\n",
+        "from langchain_google_genai import ChatGoogleGenerativeAI\n",
+        "from langchain_community.retrievers import TavilySearchAPIRetriever\n",
+        "from langchain_core.runnables import RunnablePassthrough\n",
+        "# from langchain_core.runnables import RunnableParallel\n",
+        "from langchain_core.output_parsers import StrOutputParser\n",
+        "\n",
+        "model = ChatGoogleGenerativeAI(\n",
+        "    model=\"gemini-flash-latest\",\n",
+        "    temperature=0,\n",
+        "    api_key=GOOGLE_API_KEY\n",
+        ")\n",
+        "retriever = TavilySearchAPIRetriever( k=3 )\n",
+        "chain = (\n",
+        "    {\"context\":retriever, \"question\":RunnablePassthrough()}\n",
+        "    | prompt\n",
+        "    | model\n",
+        "    | StrOutputParser()\n",
+        ")\n",
+        "\n",
+        "output = chain.invoke(\"福岡市の明日の天気予報を教えてください。\")\n",
+        "# outputはstr、表示する\n",
+        "print(f\"AIの応答：{output}\")\n",
+        "\n",
+        "AIの応答：提供された文脈によると、福岡市の明日の天気予報は以下の通りです。\n",
+        "\n",
+        "明日は雲が多く、にわか雨の可能性があります。折りたたみ傘があると安心です。また、蒸し暑くなるため、熱中症に注意が必要です。"
+      ],
+      "metadata": {
+        "id": "-8I3vI2YyJX2"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "chain_with_assign = (\n",
+        "    {\"context\":retriever,\"question\":RunnablePassthrough() }\n",
+        "    | RunnablePassthrough.assign(\n",
+        "        answer=(prompt | model | StrOutputParser())\n",
+        "    )\n",
+        ")\n",
+        "\n",
+        "\n",
+        " --- AIの応答：contextつき ---\n",
+        "{'context': [Document(metadata={'title': '福岡市の今日明日の天気 - 日本気象協会 tenki.jp', 'source': 'https://tenki.jp/forecast/9/43/8210/40130', 'score': 0.8832463, 'images': []}, page_content='# tenki.jp. ## 福岡市の天気. ### 今日\\xa006月30日(火). | 時間 | 00-06 | 06-12 | 12-18 | 18-24 |. | 降水確率 | 90% | 100% | 90% | 100% |. * 温度24.2℃(前日差:+0.7℃). | 日付 | 07月02日  (木) | 07月03日  (金) | 07月04日  (土) | 07月05日  (日) | 07月06日  (月) | 07月07日  (火) | 07月08日  (水) | 07月09日  (木) | 07月10日  (金) |. | 天気 | 曇一時雨 曇一時雨 | 曇 曇 | 雨時々曇 雨時々曇 | 雨のち曇 雨のち曇 | 曇一時雨 曇一時雨 | 曇時々晴 曇時々晴 | 晴時々曇 晴時々曇 | 晴 晴 | 晴 晴 |. | 気温 (℃) | 26  22 | 28  22 | 26  23 | 29  24 | 31  25 | 32  26 | 33  25 | 33  25 | 35  26 |. ### 気象予報士のポイント解説(日直予報士). * 2026年暑さ予想\\u3000酷暑日は全国6～10地点\\u3000梅雨明け後・台風接近時は40℃超も. * この先は気圧の下がる日が多い\\u30002日は大阪・名古屋で影響「大」\\u3000頭痛や肩こりに注意. ### こちらもおすすめ. ### 福岡地方(福岡)各地の天気. #### 福岡地方(福岡). ### 天気ガイド. ### 福岡の観測ランキング. ### 注目の情報. 【tenki.jp】ブランドムービー「空を見上げる君が好き」公開中.'), Document(metadata={'title': '福岡市の天気予報(1時間・今日明日・週間) - ウェザーニュース', 'source': 'https://weathernews.jp/onebox/tenki/fukuoka/40130', 'score': 0.82220376, 'images': []}, page_content='# 福岡市の天気予報. 2週間天気の後半に表示されている「A〜E」の記号は、降水有無の予報に対する信頼度です（毎日10時頃更新）。Aの方が高い信頼度があり、予報が的中しやすく、予報が変わりにくいことを表しています。. ### 6月15日 (月). ### 今日の天気 6月17日 (水). ## 実況天気. ## 雨雲レーダー. ## 生活指数情報. ### 空港の天気（九州）. ### 注目のお出かけスポット天気（九州）. ## 福岡県のアメダスランキング. ## 最新のお天気ニュース. ## ウェザーニュースLiVE. ### 福岡県の各地の天気. 明日は雲が多く、にわか雨の可能性があります。折りたたみ傘があると安心です。蒸し暑くなるので、熱中症に注意が必要です。.'), Document(metadata={'title': '福岡県福岡市中央区の今日・明日の天気｜2週間先までの1時間予報 - Toshin.com', 'source': 'https://www.toshin.com/weather/detail?id=80473', 'score': 0.79369855, 'images': []}, page_content='Home   >  福岡県   >  福岡市中央区   >  14日間(2週間)の1時間ごとの天気予報. # 福岡県福岡市中央区の天気. | 0時 | 1時 | 2時 | 3時 | 4時 | 5時 | 6時 | 7時 | 8時 | 9時 | 10時 | 11時 | 12時 | 13時 | 14時 | 15時 | 16時 | 17時 | 18時 | 19時 | 20時 | 21時 | 22時 | 23時 |. # 福岡県福岡市中央区の 雨雲レーダー. 適中判定および適中率は、気象庁が公開している検証方法の基準に則り算出しています。気象庁では、個々の予報と実況の降水の有無を比較し一致した場合に「適中」と判定しています。. 本サイトでは各社の出している7日前13時頃の予報と気象庁が翌日発表する天気結果の降水の有無()を比較し算出しています。各社で7日前に出している予報が、雨・にわか雨・霧雨・雪・にわか雪・みぞれ・ひょう・あられ等の降水を表す予報の場合には降水あり、それ以外には降水なしとし、また気象庁で発表しているデータで1日1.0mm以上の降水が出ている場合には降水あり、1.0mm未満の場合には降水なしとし、その一致・不一致で適中判定を出しています。. 東進「全国の学校お天気サイト」：武道館(東京都千代田区北の丸公園2-3). 提供：HALEX・World Weather Online・AccuWeather. ### ナガセの教育ネットワーク.')], 'question': '福岡市の明日の天気予報を教えてください。', 'answer': '提供された文脈によると、福岡市の明日の天気予報は以下の通りです。\\n\\n明日は雲が多く、にわか雨の可能性があります。折りたたみ傘があると安心です。また、蒸し暑くなるため、熱中症に注意が必要です。'}\n"
+      ],
+      "metadata": {
+        "id": "E5DTjG5ryZDx"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
